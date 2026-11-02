@@ -90,3 +90,5 @@ docker run -d --name cloud-firefox --rm --shm-size=1gb \
 웹 미리보기에서 포트 3000을 선택한다. 종료는 `docker stop cloud-firefox`. 이 예시에는 영구 볼륨이 없으므로 컨테이너 종료 시 브라우저 데이터가 사라진다. 포트 충돌이나 기존 이름이 있다면 먼저 상태를 확인한다. [Cloud Shell 웹 미리보기](https://docs.cloud.google.com/shell/docs/using-web-preview)는 사용자 계정에 접근을 제한하지만 미리보기 주소와 인증 정보는 공유하지 않는다.
 
 Firefox·Chromium 브라우저와 WebDriver의 설치 또는 검증을 요청하면 [브라우저 및 드라이버 검증](references/browser-drivers.md)을 읽는다. 제공된 검증 스크립트는 각 브라우저가 실제로 시작해 지정된 로컬 테스트 페이지의 제목을 읽는지 확인한다. Selenium의 자동 다운로드가 성공하거나 GUI가 연결되었다고 사전에 단정하지 않는다.
+
+기존 Chromium CDP 연결·제어 또는 Docker Firefox 화면 점검은 [브라우저 연결과 검증](references/browser-connections.md)을 따른다. Firefox의 현대적인 원격 제어는 CDP가 아니라 WebDriver BiDi다. Firefox BiDi와 Docker 기반 Chromium은 실환경에서 아직 검증되지 않았으므로 성공으로 보고하지 않는다.

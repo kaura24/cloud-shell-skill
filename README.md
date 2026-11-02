@@ -1,6 +1,6 @@
 # Cloud Shell Codex Skill
 
-Google Cloud Shell 접속, 편집기 닫기, tmux 업데이트, Codex 또는 Claude Code 설치와 실행, 브라우저 설치까지 안내합니다. Firefox·Chromium WebDriver의 실제 실행 검증 도구도 포함합니다.
+Google Cloud Shell 접속, 편집기 닫기, tmux 업데이트, Codex 또는 Claude Code 설치와 실행, 브라우저 설치까지 안내합니다. Firefox·Chromium WebDriver 검증 도구와 Chromium CDP·Docker Firefox 화면 확인 절차도 포함합니다. Firefox BiDi 및 Docker Chromium은 아직 실환경에서 검증하지 않았습니다.
 
 스킬 본문: [skills/cloud-shell/SKILL.md](skills/cloud-shell/SKILL.md)
 
