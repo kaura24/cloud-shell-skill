@@ -2,6 +2,8 @@
 
 Google Cloud Shell 접속, 편집기 닫기, tmux 업데이트, Codex 또는 Claude Code 설치와 실행, 브라우저 설치까지 안내합니다. Firefox·Chromium WebDriver 검증 도구와 Chromium CDP·Docker Firefox 화면 확인 절차도 포함합니다. Firefox BiDi 및 Docker Chromium은 아직 실환경에서 검증하지 않았습니다.
 
+Codex 터미널 스크롤백과 noVNC 클립보드 문제 해결: [terminal-clipboard-troubleshooting.md](skills/cloud-shell/references/terminal-clipboard-troubleshooting.md).
+
 스킬 본문: [skills/cloud-shell/SKILL.md](skills/cloud-shell/SKILL.md)
 
 공유 Chromium 화면과 한글·영문 클립보드 전달 스킬: [skills/cloud-shell-browser-clipboard/SKILL.md](skills/cloud-shell-browser-clipboard/SKILL.md). 브리지의 실제 Cloud Shell 미리보기와 X11 입력 검증은 별도로 필요합니다.

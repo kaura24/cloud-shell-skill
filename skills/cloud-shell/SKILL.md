@@ -1,6 +1,6 @@
 ---
 name: cloud-shell
-description: Use when setting up or troubleshooting Google Cloud Shell with Codex CLI, tmux, a visible Linux browser, disconnections, web preview, noVNC or CDP.
+description: Use when setting up or troubleshooting Google Cloud Shell with Codex or Claude Code, tmux, terminal scrollback, a shared Chromium browser, noVNC clipboard, CDP, or web preview.
 ---
 
 # Cloud Shell 사용 안내
@@ -49,6 +49,8 @@ claude
 
 Cloud Shell은 기본적으로 tmux를 사용한다. `tmux -V`는 설치된 클라이언트 버전을 확인한다. `sessions should be nested with care`는 이미 tmux 안에서 새 세션을 열려는 상황이며 설치 오류가 아니다. 기존 세션과 작업을 보존하고 무작정 `TMUX`를 지우거나 서버를 종료하지 않는다. VM이 종료되면 tmux와 실행 중 프로세스도 종료된다. [Cloud Shell tmux 안내](https://docs.cloud.google.com/shell/docs/configuring-cloud-shell#tmux-support).
 
+Codex 출력이 잘리거나 스크롤되지 않으면 [터미널과 클립보드 문제 해결](references/terminal-clipboard-troubleshooting.md)의 진단과 검증 절차를 따른다. 설정 적용과 실제 화면 스크롤 성공을 구분한다.
+
 최신 tmux 설치 요청에는 [공식 릴리스](https://github.com/tmux/tmux/releases/latest)와 [빌드 안내](https://github.com/tmux/tmux/wiki/Installing)를 확인하고 홈의 별도 경로에 설치하는 방법을 제공한다. 시스템 빌드 의존성은 임시 환경에서 사라질 수 있으며 새 바이너리 설치가 현재 실행 중인 기존 서버를 자동 업그레이드하지 않음을 알린다.
 
 Ubuntu/Debian에서 최신 안정판의 정확한 버전을 공식 릴리스에서 확인한 뒤 아래 예시의 `VERSION`을 바꿔 한 단계씩 제공한다. 다운로드·설정·빌드가 실패하면 중단하고 오류를 확인한다.
@@ -92,3 +94,5 @@ docker run -d --name cloud-firefox --rm --shm-size=1gb \
 Firefox·Chromium 브라우저와 WebDriver의 설치 또는 검증을 요청하면 [브라우저 및 드라이버 검증](references/browser-drivers.md)을 읽는다. 제공된 검증 스크립트는 각 브라우저가 실제로 시작해 지정된 로컬 테스트 페이지의 제목을 읽는지 확인한다. Selenium의 자동 다운로드가 성공하거나 GUI가 연결되었다고 사전에 단정하지 않는다.
 
 기존 Chromium CDP 연결·제어 또는 Docker Firefox 화면 점검은 [브라우저 연결과 검증](references/browser-connections.md)을 따른다. Firefox의 현대적인 원격 제어는 CDP가 아니라 WebDriver BiDi다. Firefox BiDi와 Docker 기반 Chromium은 실환경에서 아직 검증되지 않았으므로 성공으로 보고하지 않는다.
+
+noVNC 클립보드 버튼 미표시, 한글 깨짐 또는 미리보기 전송 실패도 [터미널과 클립보드 문제 해결](references/terminal-clipboard-troubleshooting.md)을 따른다. 이 저장소의 `cloud-shell-browser-clipboard` 스킬과 브리지 스크립트를 사용할 수 있으면 그 구현을 우선 재사용하고 사용자 데이터와 기존 프로필을 보존한다.
