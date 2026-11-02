@@ -1,0 +1,20 @@
+{
+  "name": "cloud-shell-tools",
+  "interface": {
+    "displayName": "Cloud Shell Tools"
+  },
+  "plugins": [
+    {
+      "name": "cloud-shell-helper",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
