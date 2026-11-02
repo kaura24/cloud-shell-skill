@@ -5,9 +5,11 @@ description: Use when setting up or troubleshooting Google Cloud Shell with Code
 
 # Cloud Shell 사용 안내
 
-Google Cloud Shell에서 Linux와 Codex를 사용하려는 사람을 돕는다. 사용자가 설명만 원하면 명령과 결과 확인 방법만 제공하며 브라우저, 터미널 또는 계정을 직접 조작하지 않는다. 명시적으로 허용한 후속 작업은 그 범위에서 진행한다. 자격 증명, 일회용 인증 코드, 계정명, 세션 ID와 개인 미리보기 주소는 예시나 공개 산출물에 저장하지 않는다.
+Google Cloud Shell에서 실행되는 에이전트의 설정·진단·복구 지침이다. 사용자가 작업을 요청하면 현재 상태를 먼저 확인한 뒤 허용된 범위에서 직접 실행하고 실제 결과를 검증한다. 설명만 요청한 경우에는 안내한다. 기존 사용자 데이터와 세션을 보존하며 자격 증명, 일회용 인증 코드, 계정명, 세션 ID와 개인 미리보기 주소는 예시나 공개 산출물에 저장하지 않는다.
 
-## 기본 순서: Cloud Shell → 편집기 닫기 → tmux 업데이트 → Codex 또는 Claude Code → 브라우저
+## 범위에 맞는 작업 순서
+
+필요한 단계만 수행한다. 사용자가 요청하지 않은 편집기 닫기, tmux 업데이트, 에이전트 설치 또는 브라우저 설치를 기본 절차로 수행하지 않는다.
 
 1. [Cloud Shell](https://shell.cloud.google.com/)에 접속하고 로그인해 터미널을 연다. 서비스 접근 및 최초 승인 안내는 사용자가 직접 진행하도록 설명한다.
 2. 편집기 화면이 필요 없으면 상단 툴바의 연필 모양 **편집기 닫기**를 클릭하도록 안내해 터미널을 넓힌다. 편집기와 터미널 닫기 버튼을 혼동하지 않는다.
@@ -17,7 +19,7 @@ Google Cloud Shell에서 Linux와 Codex를 사용하려는 사람을 돕는다. 
 
 ## 환경과 비용
 
-- Cloud Shell 자체는 이미 Linux 환경이며 기본 모드는 홈 디렉터리를 세션 간 보존하지만 VM과 홈 밖의 변경은 임시다. 비활성 시간과 최대 세션 시간 제한은 [Google 공식 문서](https://docs.cloud.google.com/shell/docs/quotas-limits)를 확인한다. 돌아가는 작업을 24시간 보장하지 않는다.
+- Cloud Shell 자체는 이미 Linux 환경이며 기본 모드는 홈 디렉터리를 세션 간 보존하지만 VM과 홈 밖의 변경은 임시다. 기본 홈 폴더는 120일 동안 Cloud Shell에 접속하지 않으면 삭제될 수 있으며 삭제된 파일은 복구할 수 없다. Google은 삭제 전 이메일을 보낸다고 안내한다. 비활성 시간과 최대 세션 시간 제한은 [Google 공식 문서](https://docs.cloud.google.com/shell/docs/quotas-limits)를 확인한다. 돌아가는 작업을 24시간 보장하지 않는다.
 - 별도 Compute Engine VM은 결제 계정이 필요하며 요금이 발생할 수 있다. 무료 등급은 특정 리전·머신 유형·사용 한도에만 적용된다. 외부 IP와 네트워크 등 별도 과금도 확인한다. 서울 리전은 무료 VM 대상이라고 안내하지 않는다. 최신 조건은 [무료 등급](https://docs.cloud.google.com/free/docs/free-cloud-features)을 확인한다.
 
 ## Codex 설치와 로그인

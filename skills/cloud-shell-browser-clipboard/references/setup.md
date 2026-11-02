@@ -6,7 +6,7 @@
 
 `docker ps`, `ps`, `ss -ltn` 등으로 기존 구성과 포트 충돌을 확인한다. `command -v x11vnc Xvfb xclip xdotool websockify`와 `x11vnc -help`로 도구 및 클립보드 옵션을 확인한다. 기존 프로필 경로와 로그인 데이터는 사용자에게 확인하고 변경하지 않는다.
 
-Ubuntu Cloud Shell에서 필요한 시스템 도구가 없다면 사용자가 설치하도록 안내한다. 환경에 따라 패키지명이나 GUI 의존성은 다를 수 있다.
+Ubuntu Cloud Shell에서 시스템 도구가 없고 설치가 작업 범위에 포함되면 에이전트가 설치한다. 사용자가 설명만 원하면 설치 방법을 안내한다. 환경에 따라 패키지명이나 GUI 의존성은 다를 수 있다.
 
 ```bash
 sudo apt update

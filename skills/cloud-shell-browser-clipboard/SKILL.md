@@ -5,9 +5,9 @@ description: Use when setting up or troubleshooting a shared Chromium screen in 
 
 # Cloud Shell Chromium 공유 화면과 클립보드
 
-Cloud Shell에서 사용자와 Codex가 같은 Chromium을 보면서 텍스트를 전달하도록 돕는다. 사용자가 방법만 원하면 직접 조작하지 말고 명령을 안내한다. 기존에 실행 중인 브라우저, 클립보드, 프로필, 파일, 포트와 세션은 확인 후 보존한다. 무단 종료·재생성·삭제하지 않는다.
+Cloud Shell에서 에이전트가 사용자와 같은 Chromium을 보고 텍스트를 전달하도록 설정·진단·검증한다. 작업 요청 시 허용된 범위에서 직접 실행하고, 설명만 원할 때는 안내한다. 기존 브라우저, 클립보드, 프로필, 파일, 포트와 세션을 먼저 확인하고 보존한다. 검증용 구성은 기존 사용자 화면과 분리하고 필요한 경우 종료·재연결 영향을 알린다.
 
-설치, 실행, 보안 설정 및 검증 명령은 [설정과 테스트](references/setup.md)를 따른다. `scripts/bridge.py`는 noVNC의 클립보드 보드에 버튼을 추가하고, `scripts/clipboard.js`는 선택한 텍스트를 그 브리지로 전달한다. 이 구성은 실제 Cloud Shell 미리보기에서 검증된 것으로 가정하지 않는다.
+설치, 실행, 보안 설정 및 검증 명령은 [설정과 테스트](references/setup.md)를 따른다. `scripts/bridge.py`는 noVNC의 클립보드 보드에 버튼을 추가하고, `scripts/clipboard.js`는 선택한 텍스트를 그 브리지로 전달한다. 독립된 Cloud Shell 환경에서 이 브리지의 로컬 경로와 인증된 HTTPS 미리보기 경로를 통해 한글·영문 붙여넣기를 검증했다. 다른 세션에서의 동작은 다시 확인한다.
 
 ## 작동 조건
 

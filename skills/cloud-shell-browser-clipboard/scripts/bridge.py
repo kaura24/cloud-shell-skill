@@ -7,6 +7,7 @@ import urllib.parse
 
 from aiohttp import ClientSession, ClientTimeout, WSMsgType, web
 
+CLIENT_KEY = web.AppKey("client", ClientSession)
 MAX_TEXT_BYTES = 256 * 1024
 HOP_HEADERS = {"connection", "transfer-encoding", "keep-alive", "proxy-authenticate", "proxy-authorization", "te", "trailer", "upgrade", "content-length", "content-encoding"}
 
@@ -62,10 +63,10 @@ def create_app(origin, upstream, display, paste=paste_x11, allow_local=False):
     app = web.Application(client_max_size=MAX_TEXT_BYTES)
 
     async def start(app):
-        app["client"] = ClientSession(timeout=ClientTimeout(total=None, connect=10))
+        app[CLIENT_KEY] = ClientSession(timeout=ClientTimeout(total=None, connect=10))
 
     async def stop(app):
-        await app["client"].close()
+        await app[CLIENT_KEY].close()
 
     app.on_startup.append(start)
     app.on_cleanup.append(stop)
@@ -96,7 +97,7 @@ def create_app(origin, upstream, display, paste=paste_x11, allow_local=False):
         if request.headers.get("Upgrade", "").lower() == "websocket":
             if request.headers.get("Origin") != origin:
                 raise web.HTTPForbidden(text="Untrusted origin")
-            client = app["client"]
+            client = app[CLIENT_KEY]
             async with client.ws_connect(url.replace("http://", "ws://", 1), protocols=("binary",), autoping=True) as remote:
                 local = web.WebSocketResponse(protocols=("binary",), autoping=True)
                 await local.prepare(request)
@@ -114,7 +115,7 @@ def create_app(origin, upstream, display, paste=paste_x11, allow_local=False):
         if request.method not in ("GET", "HEAD"):
             raise web.HTTPMethodNotAllowed(request.method, ["GET", "HEAD"])
         headers = {"Accept-Encoding": "identity"}
-        async with app["client"].request(request.method, url, headers=headers, allow_redirects=False) as resp:
+        async with app[CLIENT_KEY].request(request.method, url, headers=headers, allow_redirects=False) as resp:
             body = await resp.read()
             if request.path == "/vnc.html" and request.method == "GET" and resp.status == 200:
                 marker = b"</body>"
