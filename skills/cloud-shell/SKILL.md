@@ -7,12 +7,13 @@ description: Use when setting up or troubleshooting Google Cloud Shell with Code
 
 Google Cloud Shell에서 Linux와 Codex를 사용하려는 사람을 돕는다. 사용자가 설명만 원하면 명령과 결과 확인 방법만 제공하며 브라우저, 터미널 또는 계정을 직접 조작하지 않는다. 명시적으로 허용한 후속 작업은 그 범위에서 진행한다. 자격 증명, 일회용 인증 코드, 계정명, 세션 ID와 개인 미리보기 주소는 예시나 공개 산출물에 저장하지 않는다.
 
-## 기본 순서: Cloud Shell → 터미널 → tmux → Codex
+## 기본 순서: Cloud Shell → 편집기 닫기 → tmux 업데이트 → Codex 또는 Claude Code → 브라우저
 
 1. [Cloud Shell](https://shell.cloud.google.com/)에 접속하고 로그인해 터미널을 연다. 서비스 접근 및 최초 승인 안내는 사용자가 직접 진행하도록 설명한다.
 2. 편집기 화면이 필요 없으면 상단 툴바의 연필 모양 **편집기 닫기**를 클릭하도록 안내해 터미널을 넓힌다. 편집기와 터미널 닫기 버튼을 혼동하지 않는다.
-3. `tmux -V`로 버전을 확인한다. 최신 버전을 원하는 경우 아래 tmux 절의 공식 릴리스와 홈 디렉터리 설치 절차를 사용한다. 버전 번호와 사용 중인 서버를 구분한다. 이미 tmux에서 실행 중이라면 새 세션을 억지로 중첩하지 않는다.
-4. `codex --version`과 `codex login status`로 설치와 로그인 상태를 확인한다. 설치·로그인이 필요하면 아래 Codex 절에 따라 진행한 뒤 `codex`를 실행한다. 기존 대화를 이어갈 때는 `codex resume`을 사용한다.
+3. `tmux -V`로 버전을 확인하고, 요청된 업데이트는 아래 tmux 절의 공식 릴리스와 홈 디렉터리 설치 절차에 따라 안내한다. 버전 번호와 사용 중인 서버를 구분한다. 이미 tmux에서 실행 중이라면 새 세션을 억지로 중첩하지 않는다.
+4. 사용자가 선택한 Codex 또는 Claude Code를 설치하고 로그인·실행한다. 기존 설치와 로그인 상태를 먼저 확인하고 아래 해당 절에 따른다.
+5. Firefox 또는 Chromium과 드라이버가 필요하면 아래 브라우저 절과 연결된 검증 안내에 따라 설치하고 별도로 화면 표시와 자동화를 확인한다.
 
 ## 환경과 비용
 
@@ -31,6 +32,18 @@ npm install -g --prefix "$HOME/.local" @openai/codex
 `codex`가 PATH에 있으면 `codex`로 실행하고, 없으면 `"$HOME/.local/bin/codex"`를 사용한다. 원격 환경에서 일반 로그인 콜백이 작동하지 않으면 `codex login --device-auth`를 안내하고 사용자가 자기 브라우저에서 코드를 입력하게 한다. PATH에 없다면 `"$HOME/.local/bin/codex" login --device-auth`를 사용한다. 설정에서 기기 코드 로그인을 켜야 할 수 있다. ChatGPT 계정의 사용 권한·한도와 API 키의 별도 사용량 과금을 구분한다. [Codex 설치](https://learn.chatgpt.com/docs/codex/cli), [원격 로그인](https://learn.chatgpt.com/docs/auth#login-on-headless-devices).
 
 연결이 끊긴 경우 출력된 `codex resume <세션-ID>`를 우선 사용하거나 `codex resume`으로 선택한다. `Server is draining`은 일시적인 서버 교체·종료 과정일 수 있으므로 재연결하고 계속 실패하면 실제 오류를 확인한다. 작업이 반드시 계속 실행 중이라고 단정하지 않는다. `--yolo`는 연결 복구에 필요하지 않다.
+
+## Claude Code 설치와 로그인
+
+기존 설치는 `claude --version`으로 확인한다. 설치가 없다면 [Anthropic 공식 Linux 설치 안내](https://code.claude.com/docs/en/setup)의 네이티브 설치 명령을 제공한다.
+
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+claude --version
+claude
+```
+
+명령을 찾지 못하면 설치 출력에 표시된 경로와 PATH를 확인한다. 첫 실행 시 사용자가 직접 공식 로그인 흐름을 완료하도록 안내한다. 구독·Console·클라우드 제공자별 접근 자격과 요금을 구분하고 [공식 시작 안내](https://code.claude.com/docs/en/quickstart)에서 현재 조건을 확인한다. Codex와 Claude Code는 둘 다 필수가 아니며 사용자가 선택한 것을 설치한다.
 
 ## tmux
 
